@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Confirm Box</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .confirmbox{
+            height: 100vh;
+            width: 100%;
+            background-color: rgb(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            position: fixed;
+            top: 0;
+        }
+        .messagebox{
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 70px;
+        }
+        .buttons{
+            margin-top: 15px;
+        }
+        .btn{
+            margin: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #yes{
+            background-color: green;
+            color: white;
+            border: none;
+        }
+        #no{
+            background-color: red;
+            color: white;
+            border: none;
+        }
+        #yes:hover{
+            background-color: rgb(67, 157, 67);
+        }
+        #no:hover{
+            background-color: rgb(221, 95, 95);
+        }
+        .mainbtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .openbtn{
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+        }
+        .openbtn:hover{
+            background-color: rgb(43, 43, 43);
+        }
+        #loading-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #loading-message{
+            border: 5px solid grey;
+            border-top: 5px solid blue;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0%{
+                transform: rotate(0deg);
+            }
+            0%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+      <script>
+        function handleLoad() {
+            // This function will be called when the entire page has loaded
+            // You can perform additional actions or manipulate the DOM here
+            document.getElementById("loading-container").style.display = "none"; // Assuming you have a loading message element
+            document.getElementById("content").style.display = "block"; // Assuming you have a content element
+        }
+    </script>
+</head>
+<body  onload="handleLoad()">
+    <div id="loading-container">
+        <div id="loading-message"></div>
+    </div>
+    <div id="content" style="display: none;">
+        <!-- Your website content -->
+        <div class="mainbtn">
+            <button onclick="openConfirmBox()" class="openbtn">Open Confirm Box</button>
+        </div>
+        <div class="confirmbox">
+            <div class="messagebox">
+                <div class="message">
+                  <p>Are you 18 years old?</p>
+                </div>
+                <div class="buttons">
+                    <button class="btn" id="yes" onclick="yesClicked()">Yes</button>
+                    <button class="btn" id="no" onclick="noClicked()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        $('.confirmbox').hide();
+        function yesClicked(){
+            console.log('Yes button is clicked.');
+            $('.confirmbox').hide();
+        }
+        function noClicked(){
+            console.log('No button is clicked.');
+            $('.confirmbox').hide();
+        }
+        function openConfirmBox(){
+            $('.confirmbox').show();
+        }
+    </script>
+</body>
+</html>
